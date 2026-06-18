@@ -115,6 +115,88 @@ def analytics():
     return render_template("analytics.html")
 
 
+@app.route("/riskscore", methods=["GET", "POST"])
+def riskscore():
+
+    risk_score = None
+    risk_category = None
+
+    if request.method == "POST":
+
+        shipment_mode = request.form["shipment_mode"]
+
+        weight = float(
+            request.form["weight"]
+        )
+
+        freight_cost = float(
+            request.form["freight_cost"]
+        )
+
+        # Freight Score
+
+        if freight_cost > 50000:
+            freight_score = 10
+        elif freight_cost > 20000:
+            freight_score = 7
+        elif freight_cost > 10000:
+            freight_score = 5
+        elif freight_cost > 5000:
+            freight_score = 3
+        else:
+            freight_score = 1
+
+        # Weight Score
+
+        if weight > 10000:
+            weight_score = 10
+        elif weight > 5000:
+            weight_score = 7
+        elif weight > 2000:
+            weight_score = 5
+        elif weight > 500:
+            weight_score = 3
+        else:
+            weight_score = 1
+
+        # Shipment Mode Score
+
+        shipment_scores = {
+            "Air": 3,
+            "Truck": 5,
+            "Ocean": 8,
+            "Air Charter": 6
+        }
+
+        shipment_score = shipment_scores.get(
+            shipment_mode,
+            5
+        )
+
+        risk_score = round(
+            (
+                freight_score +
+                weight_score +
+                shipment_score
+            ) / 3,
+            2
+        )
+
+        if risk_score >= 7:
+            risk_category = "🔴 High Risk"
+
+        elif risk_score >= 4:
+            risk_category = "🟡 Medium Risk"
+
+        else:
+            risk_category = "🟢 Low Risk"
+
+    return render_template(
+        "riskscore.html",
+        risk_score=risk_score,
+        risk_category=risk_category
+    )
+
 
 if __name__ == "__main__":
     app.run(debug=True)

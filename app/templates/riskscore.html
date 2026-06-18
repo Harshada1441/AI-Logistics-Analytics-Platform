@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Risk Score Engine</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+
+        <h1>🚚 Shipment Risk Score Engine</h1>
+
+        <div class="form-card">
+
+            <form method="POST">
+
+                <label>Shipment Mode</label>
+
+                <select name="shipment_mode">
+
+                    <option>Air</option>
+                    <option>Truck</option>
+                    <option>Ocean</option>
+                    <option>Air Charter</option>
+
+                </select>
+
+                <label>Weight (Kilograms)</label>
+                <input type="number" step="0.01" name="weight" required>
+
+                <label>Freight Cost (USD)</label>
+                <input type="number" step="0.01" name="freight_cost" required>
+
+                <button type="submit">
+                    Calculate Risk Score
+                </button>
+
+            </form>
+
+            {% if risk_score %}
+
+            <div class="result-box">
+
+                <h2>Risk Score: {{ risk_score }}/10</h2>
+
+                <h2>{{ risk_category }}</h2>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
