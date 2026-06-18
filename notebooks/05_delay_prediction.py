@@ -92,4 +92,9 @@ joblib.dump(
     "models/delay_prediction_model.pkl"
 )
 
+joblib.dump(
+    le_dict,
+    "models/label_encoders.pkl"
+)
 print("\n Model Saved Successfully!")
+print("Encoders Saved Successfully!")

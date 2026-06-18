@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Analytics Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📊 AI Logistics Analytics Dashboard</h1>
+
+<div class="button-container">
+
+    <a href="/" class="btn">🏠 Home</a>
+
+    <a href="/predict" class="btn">🤖 Delay Prediction</a>
+
+</div>
+
+<h2>Executive Dashboard</h2>
+<img src="{{ url_for('static', filename='01_executive_dashboard.png') }}" class="dashboard-img">
+
+<h2>Country Analysis Dashboard</h2>
+<img src="{{ url_for('static', filename='02_country_analysis.png') }}" class="dashboard-img">
+
+<h2>Vendor Analysis Dashboard</h2>
+<img src="{{ url_for('static', filename='03_vendor_analysis.png') }}" class="dashboard-img">
+
+<h2>Product Analysis Dashboard</h2>
+<img src="{{ url_for('static', filename='04_product_analysis.png') }}" class="dashboard-img">
+
+<h2>Delivery & Logistics Dashboard</h2>
+<img src="{{ url_for('static', filename='05_delivery_analysis.png') }}" class="dashboard-img">
+
+<footer>
+    <p>
+        Developed by Harshada Patil | AI-Powered Smart Logistics Intelligence Platform
+    </p>
+</footer>
+
+
+</div>
+
+</body>
+</html>
